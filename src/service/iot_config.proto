@@ -384,33 +384,25 @@ message gateway_info {
   blockchain_region_params_v1 region_params = 7;
 }
 
-enum gateway_error_reason {
-  reason_none = 0;
-  gateway_not_found = 1;
-}
-
-message gateway_error_res {
-  bytes address = 1;
-  gateway_error_reason error = 2;
-}
-
 /// Look up the details of a given hotspot public key
 message gateway_info_req_v1 {
   /// The pubkey_bin address of the gateway to look up
   bytes address = 1;
+  bytes signature = 2;
 }
 
 message gateway_info_res_v1 {
   /// Timestamp of response
   uint64 timestamp = 1;
-  oneof result {
-    gateway_info info = 2;
-    gateway_error_res error = 3;
-  }
+  gateway_info info = 2;
+  bytes signature = 3;
 }
 
 /// Request a stream of all active gateways
-message gateway_info_stream_req_v1 { uint32 batch_size = 1; }
+message gateway_info_stream_req_v1 {
+  uint32 batch_size = 1;
+  bytes signature = 2;
+}
 
 /// Active gateway info streaming response containing a batch of gateways
 message gateway_info_stream_res_v1 {
