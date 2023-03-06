@@ -381,7 +381,6 @@ message gateway_info {
   // For example 1 dbi = 10, 15 dbi = 150
   int32 gain = 5;
   region region = 6;
-  blockchain_region_params_v1 region_params = 7;
 }
 
 /// Look up the details of a given hotspot public key
@@ -407,6 +406,17 @@ message gateway_info_stream_req_v1 {
 /// Active gateway info streaming response containing a batch of gateways
 message gateway_info_stream_res_v1 {
   repeated gateway_info_res_v1 gateways = 1;
+}
+
+message region_params_req_v1 {
+  region region = 1;
+  bytes signature = 2;
+}
+
+message region_params_res_v1 {
+  region region = 1;
+  blockchain_region_params_v1 params = 2;
+  bytes signature = 3;
 }
 
 // ------------------------------------------------------------------
@@ -489,6 +499,10 @@ service gateway {
       returns (stream gateway_info_stream_res_v1);
 }
 
+service region {
+  // Return the region params for the specified region
+  rpc region_params(region_params_req_v1) returns (region_params_res_v1);
+}
 service admin {
   // Authorize a public key for validating trusted rpcs
   rpc add_key(admin_add_key_req_v1) returns (admin_key_res_v1);
