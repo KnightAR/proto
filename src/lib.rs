@@ -19,6 +19,8 @@ pub mod services {
         pub use admin_server::{Admin, AdminServer};
         pub use gateway_client::GatewayClient;
         pub use gateway_server::{Gateway, GatewayServer};
+        pub use region_client::RegionClient;
+        pub use region_server::{Region, RegionServer};
         pub use org_client as config_org_client;
         pub use org_server::{Org, OrgServer};
         pub use route_client as config_route_client;
@@ -49,6 +51,10 @@ pub mod services {
     }
     pub mod gateway {
         pub use crate::gateway_client::GatewayClient as Client;
+    }
+
+    pub mod region {
+        pub use crate::region_client::RegionClient as Client;
     }
 
     pub mod local {
