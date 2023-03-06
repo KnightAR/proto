@@ -25,7 +25,6 @@ pub mod services {
         pub use route_server::{Route, RouteServer};
         pub use session_key_filter_client as config_session_key_filter_client;
         pub use session_key_filter_server::{SessionKeyFilter, SessionKeyFilterServer};
-        pub use region_client as config_region_client;
     }
 
     pub mod mobile_config {
