@@ -371,9 +371,8 @@ message admin_remove_key_req_v1 {
 message admin_key_res_v1 {}
 
 message gateway_info {
-  /// The asserted h3 (string) location of the gateway.
-  // Empty string if the gateway is not found
-  string location = 1;
+  /// The asserted h3 location of the gateway.
+  uint64 location = 1;
   bytes address = 2;
   bool is_full_hotspot = 3;
   /// the transmit gain value of the gateway in dbi x 10
@@ -387,7 +386,7 @@ message gateway_info {
 message gateway_info_req_v1 {
   /// The pubkey_bin address of the gateway to look up
   bytes address = 1;
-  // sig from a key known to the config service
+  /// sig from a key known to the config service
   bytes signature = 2;
 }
 
@@ -395,32 +394,37 @@ message gateway_info_res_v1 {
   /// Timestamp of response
   uint64 timestamp = 1;
   gateway_info info = 2;
-  // sig from the config service
+  /// sig from the config service
   bytes signature = 3;
 }
 
 /// Request a stream of all active gateways
 message gateway_info_stream_req_v1 {
   uint32 batch_size = 1;
-  // sig from a key known to the config service
+  /// sig from a key known to the config service
   bytes signature = 2;
 }
 
 /// Active gateway info streaming response containing a batch of gateways
 message gateway_info_stream_res_v1 {
-  repeated gateway_info_res_v1 gateways = 1;
+  /// Timestamp of response
+  uint64 timestamp = 1;
+  /// batch of gateways
+  repeated gateway_info gateways = 2;
+  /// sig from the config service
+  bytes signature = 3;
 }
 
 message region_params_req_v1 {
   region region = 1;
-  // sig from a key known to the config service
+  /// sig from a key known to the config service
   bytes signature = 2;
 }
 
 message region_params_res_v1 {
   region region = 1;
   blockchain_region_params_v1 params = 2;
-  // sig from the config service
+  /// sig from the config service
   bytes signature = 3;
 }
 
