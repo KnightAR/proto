@@ -375,12 +375,12 @@ message gateway_info {
   // Empty string if the gateway is not found
   string location = 1;
   bytes address = 2;
-  bytes owner = 3;
-  bool is_full_hotspot = 4;
+  bool is_full_hotspot = 3;
   /// the transmit gain value of the gateway in dbi x 10
   // For example 1 dbi = 10, 15 dbi = 150
-  int32 gain = 5;
-  region region = 6;
+  int32 gain = 4;
+  region region = 5;
+  int32 elevation = 6;
 }
 
 /// Look up the details of a given hotspot public key
