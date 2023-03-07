@@ -372,7 +372,7 @@ message admin_key_res_v1 {}
 
 message gateway_info {
   /// The asserted h3 location of the gateway.
-  uint64 location = 1;
+  string location = 1;
   bytes address = 2;
   bool is_full_hotspot = 3;
   /// the transmit gain value of the gateway in dbi x 10
